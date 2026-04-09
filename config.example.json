@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "pollSeconds": 60,
+  "requestTimeoutMs": 12000,
+  "commandPrefix": "球鳖",
+  "adminQqList": "123456789",
+  "roomsJson": "[{\"roomId\":\"394988\",\"groupIds\":[\"12345678\"],\"name\":\"主播A\"}]",
+  "statePath": "data/bilibili-live-push-state.json"
+}

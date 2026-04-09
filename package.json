@@ -1,0 +1,28 @@
+{
+  "name": "napcat-plugin-bilibili-live-push",
+  "plugin": "bilibili-live-push",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "index.mjs",
+  "description": "Bilibili 开播通知推送到 QQ 群的 NapCat 插件",
+  "author": "sanxi",
+  "license": "MIT",
+  "keywords": [
+    "napcat",
+    "plugin",
+    "qq",
+    "bilibili",
+    "live"
+  ],
+  "napcat": {
+    "tags": [
+      "通知",
+      "工具"
+    ],
+    "minVersion": "4.14.0",
+    "homepage": "https://github.com/sanxi33/napcat-plugin-bilibili-live-push"
+  },
+  "dependencies": {
+    "napcat-types": "0.0.16"
+  }
+}
