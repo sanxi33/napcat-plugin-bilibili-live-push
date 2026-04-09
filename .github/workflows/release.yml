@@ -74,7 +74,10 @@ jobs:
             PREV_TAG=$(git rev-list --max-parents=0 HEAD | head -1)
           fi
 
-          COMMITS=$(git log --pretty=format:'- %s (%h)' "$PREV_TAG"..HEAD 2>/dev/null || git log --pretty=format:'- %s (%h)' -10)
+          COMMITS=$(git log --pretty=format:'- %s (%h)' "$PREV_TAG"..HEAD 2>/dev/null || true)
+          if [ -z "$COMMITS" ]; then
+            COMMITS=$(git log --pretty=format:'- %s (%h)' -10)
+          fi
           echo "$COMMITS" > commits.txt
           echo "current_tag=$CURRENT_TAG" >> "$GITHUB_OUTPUT"
           echo "prev_tag=$PREV_TAG" >> "$GITHUB_OUTPUT"
