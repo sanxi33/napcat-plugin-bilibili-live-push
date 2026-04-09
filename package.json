@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "main": "index.mjs",
-  "description": "Bilibili 开播通知推送到 QQ 群的 NapCat 插件",
+  "description": "NapCat Bilibili 开播通知推送插件",
   "author": "sanxi",
   "license": "MIT",
   "keywords": [
