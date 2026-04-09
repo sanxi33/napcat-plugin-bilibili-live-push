@@ -72,13 +72,6 @@
 - 当前是轮询方案，不是 WebHook 推送，通知时效取决于 `pollSeconds`
 - 首次启用时会立即检查一次直播间状态
 
-## 开源流程文档
-
-仓库内可复用的流程文档：
-
-- [OPEN_SOURCE_CHECKLIST.md](./OPEN_SOURCE_CHECKLIST.md)
-- [NAPCAT_PLUGIN_OPEN_SOURCE_WORKFLOW.md](./NAPCAT_PLUGIN_OPEN_SOURCE_WORKFLOW.md)
-
 ## License
 
 MIT
