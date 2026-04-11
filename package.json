@@ -1,7 +1,7 @@
 {
   "name": "napcat-plugin-bilibili-live-push",
   "plugin": "bilibili-live-push",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "type": "module",
   "main": "index.mjs",
   "description": "NapCat Bilibili 开播通知推送插件",
