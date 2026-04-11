@@ -1,75 +1,37 @@
 # napcat-plugin-bilibili-live-push
 
-一个给 NapCat 用的 Bilibili 开播提醒插件。你填好直播间和群号后，它会定时检查直播状态，并在主播开播时把通知发到指定 QQ 群。
+一个为 NapCat 设计的 Bilibili 开播提醒插件。配置好直播间号和群号后，插件会定时检查直播状态，并在主播开播时把提醒发到指定 QQ 群。
 
-## 这份 README 默认把你当作
+## 适用场景
 
-- 已经装好了 NapCat，会在 WebUI 里导入插件 zip
-- 愿意在配置页里填几个字段，但不想先研究源码
-- 已经知道自己要监控哪个直播间、要推到哪个群
+- 需要在 QQ 群里接收 B 站开播提醒
+- 同时监控多个直播间
+- 不同直播间需要推送到不同群
 
-如果你是来二开插件或研究构建流程的，这份 README 不是按开发者视角写的。
+## 环境要求
 
-## 这个插件适合谁
+- 已部署 NapCat，并了解如何导入插件包 (`.zip`)
+- 已知要监控的直播间号
+- 已知要接收提醒的 QQ 群号
+- 需要至少一个管理员 QQ 用于控制开关命令
 
-适合：
-
-- 想在 QQ 群里收 B 站开播提醒
-- 想同时监控多个直播间
-- 希望每个直播间可以推到不同群
-
-不太适合：
-
-- 想要秒级实时推送的人
-- 不知道直播间号和群号的人
-
-## 装之前要准备什么
-
-在安装之前，先准备好这 3 件事：
-
-1. 你要监控的 Bilibili 直播间号
-2. 你要推送到的 QQ 群号
-3. 可以管理这个插件的管理员 QQ 号
-
-其中最容易卡住的是 `roomsJson`。你可以先直接照下面这个例子改：
-
-```json
-[
-  {
-    "roomId": "394988",
-    "groupIds": ["12345678"],
-    "name": "某主播"
-  }
-]
-```
-
-说明：
-
-- `roomId`：Bilibili 直播间号
-- `groupIds`：要接收通知的 QQ 群号列表
-- `name`：备注名，可选，但建议填，方便你自己识别
-
-## 安装
+## 安装步骤
 
 ### 1. 下载插件
 
-从 [Releases](https://github.com/sanxi33/napcat-plugin-bilibili-live-push/releases) 下载最新的：
-
-- `napcat-plugin-bilibili-live-push.zip`
+前往 [Releases](https://github.com/sanxi33/napcat-plugin-bilibili-live-push/releases) 页面，下载最新版本的 `napcat-plugin-bilibili-live-push.zip`。
 
 ### 2. 导入 NapCat
 
-在 NapCat 插件管理里导入这个 zip，并启用插件。
+在 NapCat 的插件管理界面中导入 zip 文件，并启用插件。
 
-### 3. 先填最少配置
+### 3. 最小化配置示例
 
-第一次建议你只先填这几个：
+首次使用时，建议先填这几个字段：
 
 - `roomsJson`
 - `adminQqList`
 - `commandPrefix`
-
-推荐示例：
 
 ```json
 {
@@ -83,34 +45,42 @@
 }
 ```
 
-其中：
+`roomsJson` 里的单条配置示例：
 
-- `adminQqList` 是逗号分隔的 QQ 号字符串，不是数组
-- `pollSeconds` 建议先保持默认 `60`
-- `statePath` 一般不用改
+```json
+[
+  {
+    "roomId": "394988",
+    "groupIds": ["12345678"],
+    "name": "某主播"
+  }
+]
+```
 
-## 常用命令
+## 使用方法
 
-如果命令前缀是默认的 `球鳖`，可以直接这样用：
+以下示例默认命令前缀为 `球鳖`：
 
-- `球鳖 B站推送状态`
-- `球鳖 开启B站推送`
-- `球鳖 关闭B站推送`
-- `球鳖 立即检查B站直播`
+```
+球鳖 B站推送状态
+球鳖 开启B站推送
+球鳖 关闭B站推送
+球鳖 立即检查B站直播
+```
 
-如果你把前缀留空，就直接发送命令本体。
+如果你把 `commandPrefix` 设为空，则可以直接输入命令本体。
 
-## 第一次怎么确认自己配对了
+## 验证安装
 
-建议按这个顺序测：
+建议按以下顺序测试：
 
-1. 先发 `球鳖 B站推送状态`，确认插件有响应
-2. 再发 `球鳖 立即检查B站直播`
-3. 如果没报错，说明配置格式基本正确
+1. 发送 `球鳖 B站推送状态`
+2. 再发送 `球鳖 立即检查B站直播`
+3. 若插件正常返回状态信息且无报错，说明核心配置已生效
 
-## 一键跳到 NapCat WebUI 安装页
+## 快捷安装链接
 
-如果你的 NapCat 版本是 `4.15.19` 或更高，可以直接点下面按钮跳到插件安装界面：
+NapCat 版本 ≥ `4.15.19` 时，可点击下方按钮快速跳转至插件安装页面：
 
 <a href="https://napneko.github.io/napcat-plugin-index?pluginId=napcat-plugin-bilibili-live-push" target="_blank">
   <img src="https://github.com/NapNeko/napcat-plugin-index/blob/pages/button.png?raw=true" alt="在 NapCat WebUI 中打开" width="170">
@@ -118,8 +88,8 @@
 
 ## 已知限制
 
-- 这是轮询检查，不是 WebHook，所以提醒速度取决于 `pollSeconds`
-- 插件依赖 Bilibili 公开接口，上游改动后可能需要更新
+- 插件采用轮询方式检查直播状态，提醒速度取决于 `pollSeconds`
+- 依赖 Bilibili 公开接口，上游接口变化时可能需要更新插件
 - 首次启用后会立即检查一次直播状态
 
 ## License
